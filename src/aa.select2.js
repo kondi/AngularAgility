@@ -87,8 +87,8 @@ angular
           //run a query to get options (search)
           if (inAjaxMode) {
             derivedOpts.query = function (query) {
-              settings.options(query.term)
-                .success(function (data) {
+              var promise = settings.options(query.term);
+              (promise.success || promise.then)(function (data) {
                   if (inThisMode) {
                     var newData = [];
                     angular.forEach(data, function (str) {
